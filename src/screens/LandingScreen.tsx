@@ -18,7 +18,7 @@ export const LandingScreen = () => {
 
         (async () => {
 
-            let { status } = await Location.requestPermissionsAsync();
+            let { status } = await Location.requestForegroundPermissionsAsync();
 
             if (status !== 'granted'){
                 setErrorMsg('Permission to access location is not granted')
