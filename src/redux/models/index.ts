@@ -50,6 +50,6 @@ export interface UserState {
 }
 
 export interface ShopingState{
-    availbility : FoodAvailability;
-    foodAvailbility : [FoodModel];
+    availability: FoodAvailability,
+    availableFoods: [FoodModel]
 }
