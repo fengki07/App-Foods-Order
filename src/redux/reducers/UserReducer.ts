@@ -1,5 +1,5 @@
 import { LocationGeocodedAddress } from 'expo-location'
-import {userAction} from '../actions'
+import {userAction} from '../actions/userAction'
 import { FoodModel, UserModel, UserState } from '../models'
 
 

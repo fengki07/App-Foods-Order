@@ -24,7 +24,7 @@ export interface Restaurant {
     foodtype : string;
     addresss : string;
     phone : number;
-    image : [string]
+    images : [string]
     foods : [FoodModel]
 }
 
