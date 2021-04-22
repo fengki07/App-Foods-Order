@@ -4,7 +4,7 @@ import {UserReducer} from './UserReducer'
 
 const rootReducer = combineReducers({
     userReducer : UserReducer,
-    shopingReducer : ShoppingReducer
+    shoppingReducer : ShoppingReducer
 })
  export type ApplicationState = ReturnType<typeof rootReducer>
  export {rootReducer}

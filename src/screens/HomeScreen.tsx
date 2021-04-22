@@ -14,21 +14,21 @@ import { useNavigation } from '../utils';
 
 interface HomeProps {
     userReducer: UserState,
-    ShopingReducer : ShopingState,
+    shoppingReducer : ShopingState,
     onAvailability : Function,
     onSearchFoods : Function
 }
 
 const HomeSreens: React.FC<HomeProps> = (props) => {
-    const {navigate} = useNavigation()
-    const {location} = props.userReducer;
-    const {availability} = props.ShopingReducer;
-    const {categories, foods, restaurant} = availability
+    const { navigate } = useNavigation()
+    const { location } = props.userReducer;
+    const  { availability } = props.shoppingReducer;
+    const {categories, foods, restaurant} = availability;
 
     useEffect(() => {
         props.onAvailability(location.postalCode)
         setTimeout(() => {
-            props.onSearchFoods(location.postalCode)
+        props.onSearchFoods(location.postalCode)
         },1000)
     },[])
 
@@ -87,7 +87,7 @@ const HomeSreens: React.FC<HomeProps> = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'pink'
+        backgroundColor: 'white'
     },
     navigation: {
         flex: 1,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
 })
 const mapToStateProps = (state : ApplicationState) => ({
     userReducer: state.userReducer,
-    shopingReducer : state.shopingReducer
+    shoppingReducer : state.shoppingReducer
 })
 
 const homeScreen = connect(mapToStateProps, { onAvailability,  onSearchFoods })(HomeSreens)

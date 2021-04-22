@@ -47,7 +47,7 @@ export const onUpdateLocation = (location : LocationGeocodedAddress) => {
     }
 }
 
-export const updateCart = (item : FoodModel) => {
+export const onUpdateCart = (item : FoodModel) => {
     return async (dispatch : Dispatch<userAction>) => {
             dispatch ({
                 type: 'ON_UPDATE_CART',

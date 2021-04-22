@@ -4,10 +4,13 @@ import { Image, StyleSheet} from 'react-native';
 import { LandingScreen } from './src/screens/LandingScreen';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
-import { HomeScreen } from './src/screens/HomeScreen';
+import { homeScreen } from './src/screens/HomeScreen';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import {Provider} from 'react-redux'
 import {store} from './src/redux/store'
+import { FoodDetailScreen } from './src/screens/FoodDetailScreen';
+import { SearchScreen } from './src/screens/SearchScreen';
+import { RestaurantScreen } from './src/screens/RestauranScreen';
 
 
 
@@ -30,7 +33,10 @@ const switchNavigator = createSwitchNavigator({
    
     home: {
       screen: createStackNavigator({
-        HomePage: HomeScreen
+        HomePage: homeScreen,
+        SearchPage: SearchScreen,
+        RestaurantPage: RestaurantScreen,
+        FoodDetailPage: FoodDetailScreen
       },),
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor}) => {
@@ -43,7 +49,7 @@ const switchNavigator = createSwitchNavigator({
    
     Offer: {
       screen: createStackNavigator({
-        OfferPage: HomeScreen 
+        OfferPage: homeScreen 
       }),
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor}) => {
@@ -56,7 +62,7 @@ const switchNavigator = createSwitchNavigator({
      
      Cart: {
       screen: createStackNavigator({
-        CartPage: HomeScreen
+        CartPage: homeScreen
       },),
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor}) => {
@@ -68,7 +74,7 @@ const switchNavigator = createSwitchNavigator({
      
      Account: {
       screen: createStackNavigator({
-        AccountPage: HomeScreen
+        AccountPage: homeScreen
       }),
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor}) => {

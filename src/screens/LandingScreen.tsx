@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { ApplicationState } from '../redux'
 import {onUpdateLocation} from '../redux/actions/userAction'
 import { UserState } from '../redux/models';
+import { LocationGeocodedAddress } from 'expo-location';
 
 const screenWidth = Dimensions.get('screen').width
 
@@ -27,7 +28,7 @@ const LandingScreens: React.FC<LandingProps> = (props) => {
 
         (async () => {
 
-            let { status } = await Location.requestForegroundPermissionsAsync();
+            let  status: any = await Location.getCurrentPositionAsync();
 
             if (status !== 'granted'){
                 setErrorMsg('Permission to access location is not granted')

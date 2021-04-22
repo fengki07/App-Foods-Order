@@ -49,7 +49,7 @@ export interface UserState {
     cart : [FoodModel];
 }
 
-export interface ShopingState{
+export interface ShoppingState{
     availability: FoodAvailability,
     availableFoods: [FoodModel]
 }
