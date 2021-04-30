@@ -1,3 +1,3 @@
-export const Base_Url = "https://foods-order.netlify.app/"
+export const Base_Url = "https://online-foods.herokuapp.com/"
 
 export * from './useNavigation'

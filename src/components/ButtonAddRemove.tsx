@@ -1,38 +1,41 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+
+interface ButtonProps{ 
+    onAdd: Function;
+    qty: number;
+    onRemove: Function;
+ }
 
 
-interface ButtonProps {
-    onAdd : Function;
-    qty : number;
-    onRemove : Function;
+const ButtonAddRemove: React.FC<ButtonProps> = ({ onAdd, qty, onRemove }) => {
+
+if(qty > 0){
+    return (
+        <View style={styles.optionsView}>
+            <TouchableOpacity style={styles.btnPlusMinus} onPress={() => onAdd()}>
+                <Text style={{ fontSize: 30, color: '#f15b5d'}}>+</Text>
+            </TouchableOpacity>
+            <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: 40, }}>
+                <Text style={{ fontSize: 25, fontWeight: '600', color: 'black',textAlign: 'center'}}>{qty}</Text>
+            </View>
+            <TouchableOpacity style={styles.btnPlusMinus} onPress={() => onRemove()}>
+                <Text style={{ fontSize: 30, color: '#f15b5d'}}>-</Text>
+            </TouchableOpacity>
+
+        </View>
+        
+    )
+}else{
+    return (
+        <TouchableOpacity style={styles.btn} onPress={() => onAdd()}>
+            <Text style={{ fontSize: 18, color: '#FFF'}}> Add</Text>
+        </TouchableOpacity>
+    )
+}
+     
 }
 
-const ButtonAddRemove: React.FC<ButtonProps> = ({onAdd, qty, onRemove}) => {
-
-    if(qty > 0){
-        return (
-            <View style={styles.optionsView}>
-                <TouchableOpacity style={styles.btnPlusMinus} onPress={() => onAdd()}>
-                    <Text style={{fontSize: 30, color: '#f15b5d'}}>+</Text>
-                </TouchableOpacity>
-            <View style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: 40}} >
-                <Text style= {{fontSize: 25, fontWeight: '600', color: 'black', textAlign: 'center'}}>{qty}</Text>
-            </View>
-            <TouchableOpacity style= {styles.btnPlusMinus} onPress={() => onRemove()}>
-                <Text style={{fontSize: 30, color: '#f15b5d'}}>-</Text>
-            </TouchableOpacity>
-            </View>
-        )
-    }else{
-        return (
-            <TouchableOpacity style={styles.btn} onPress={() => onAdd()}> 
-                <Text style={{fontSize: 18, color: '#FFF'}}>Add</Text>
-            </TouchableOpacity>
-        )
-    }
-}
 
 const styles = StyleSheet.create({
     btn: { 
@@ -59,6 +62,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',  
         justifyContent: 'space-between', 
         alignItems: 'center', flex: 1},
-})
-
-export{ButtonAddRemove}
+    
+    })
+ export { ButtonAddRemove }

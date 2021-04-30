@@ -1,12 +1,12 @@
 import {shopingAction} from '../actions/shpingAction'
-import {FoodAvailability, FoodModel, ShopingState,} from '../models'
+import {FoodAvailability, FoodModel, ShoppingState,} from '../models'
 
 const initialState = {
     availability : {} as FoodAvailability,
     availableFoods : {} as [FoodModel]
 };
 
-const ShoppingReducer = (state: ShopingState = initialState, action: shopingAction) => {
+const ShoppingReducer = (state: ShoppingState = initialState, action: shopingAction) => {
     switch(action.type) {
         case 'ON_AVAILBILITY':
             return {

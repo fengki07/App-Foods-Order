@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
+
 import React from 'react';
 import { Image, StyleSheet} from 'react-native';
 import { LandingScreen } from './src/screens/LandingScreen';
@@ -19,7 +19,7 @@ const switchNavigator = createSwitchNavigator({
   landingStack: {
     screen: createStackNavigator({
       Landing: LandingScreen,
-     
+      
     },{
       defaultNavigationOptions: {
         headerShown: false
@@ -37,7 +37,11 @@ const switchNavigator = createSwitchNavigator({
         SearchPage: SearchScreen,
         RestaurantPage: RestaurantScreen,
         FoodDetailPage: FoodDetailScreen
-      },),
+      },{
+        defaultNavigationOptions: {
+          headerShown: false
+        }
+      }),
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor}) => {
           let icon = focused == true ? require('./src/images/home_icon.png') : require('./src/images/home_n_icon.png') 
@@ -46,7 +50,7 @@ const switchNavigator = createSwitchNavigator({
       }
     },
 
-   
+    
     Offer: {
       screen: createStackNavigator({
         OfferPage: homeScreen 
@@ -59,11 +63,16 @@ const switchNavigator = createSwitchNavigator({
       }
     },
 
-     
+    
      Cart: {
       screen: createStackNavigator({
         CartPage: homeScreen
-      },),
+       
+      }, {
+        defaultNavigationOptions: {
+          headerShown: false
+        }
+      }),
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor}) => {
           let icon = focused == true ? require('./src/images/cart_icon.png') : require('./src/images/cart_n_icon.png') 
@@ -71,10 +80,11 @@ const switchNavigator = createSwitchNavigator({
         }
       }
     },
-     
+    
      Account: {
       screen: createStackNavigator({
-        AccountPage: homeScreen
+        AccountPage: homeScreen,
+ 
       }),
       navigationOptions: {
         tabBarIcon: ({ focused, tintColor}) => {

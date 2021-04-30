@@ -3,62 +3,66 @@ import { View, StyleSheet, Text, ImageBackground, Dimensions } from 'react-nativ
 import { connect } from 'react-redux';
 import { ApplicationState } from '../redux';
 import { FoodModel, UserState } from '../redux/models';
-import { useNavigation } from '../utils';
 import {onUpdateCart} from '../redux/actions/userAction'
 import { ButtonWhiteIcon } from '../components/ButtonWhiteIcon';
 import { FoodCard } from '../components/FoodCard';
 import { checkExistence } from '../utils/CartHelper';
 
 
-interface FoodDetailProps {
+interface FoodDetailProps{ 
     onUpdateCart: Function,
-    navigation: {getparams: Function, goBack: Function}
-    useReducer: UserState,
-}
+    navigation: { getParam: Function, goBack: Function}
+    userReducer: UserState,
+ }
 
 const FoodDetailScreens: React.FC<FoodDetailProps> = (props) => {
 
-    const {getparams, goBack} = props.navigation;
-    const food = getparams('food') as FoodModel
-    const {navigate} = useNavigation()
-    const {cart} = props.useReducer;
+    const { getParam, goBack } = props.navigation;
+    const foods = getParam('food') as FoodModel
+    const { cart } = props.userReducer;
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.navigation}>
+  
+return (<View style={styles.container}>
+        <View style={styles.navigation}>
             <ButtonWhiteIcon icon={require('../images/back_arrow.png')} onTap={() => goBack()} width={42} height={42} />
-            <Text style={{fontSize: 22, fontWeight: '600', marginLeft: 60}}>{food.name}</Text>
-            </View>
-            <View style={styles.body}>
-            <ImageBackground source={{uri: `${food.images[0]}`}}
-                style={{width: Dimensions.get('screen').width, height: 300, justifyContent: 'flex-end'}}>
-            <View style={{height: 120, backgroundColor: 'rgba(0,0,0,0.6)', padding:10}}>
-            <Text style={{color: '#FFF', fontSize: 30, fontWeight: '700'}}>{food.name}</Text>
-            <Text style={{color: '#FFF', fontSize: 25, fontWeight: '500'}}>{food.category}</Text>
-            </View>
-            </ImageBackground>
-            <View style={{display: 'flex', height: 300, padding: 20}}>
-            <Text> Food Will Be Ready Within {food.readytime} Minite(s)</Text>
-            <Text>{food.discription}</Text>
-            </View>
-            <View style={{height: 120}}>
-                <FoodCard item = {checkExistence(food, cart)} onTap={() =>{}} onUpdateCart={props.onUpdateCart}/>
-            </View>
-            </View>
+                <Text style={{ fontSize: 22, fontWeight: '600', marginLeft: 60}}> {foods.name}</Text>
         </View>
-    )
-}
+        <View style={styles.body}>
+            <ImageBackground source={{ uri: `${foods.images[0]}`}}
+            style={{ width: Dimensions.get('screen').width, height: 300, justifyContent: 'flex-end', }}
+            >
+            <View style={{ height: 120, backgroundColor: 'rgba(0,0,0,0.6)', padding: 10}}>
 
-const styles=StyleSheet.create({
-    container: {flex:1, backgroundColor: '#F2F2F2'},
-    navigation: {flex: 3, marginTop: 43, paddingLeft: 10, flexDirection: 'row', alignItems: 'center' },
-    body: {flex: 10, justifyContent: 'flex-start', alignItems: 'center', backgroundColor: '#FFF', paddingBottom:160 },
-    footer: {flex: 1, backgroundColor: 'cyan'}
+                <Text style={{ color: '#FFF', fontSize: 30, fontWeight: '700' }} > {foods.name}</Text>
+                <Text style={{ color: '#FFF', fontSize: 25, fontWeight: '500' }} > {foods.category} </Text>
+
+            </View>
+            </ImageBackground>  
+             <View style={{ display: 'flex', height: 300, padding: 20}}> 
+                <Text> Food Will be ready within {foods.readytime}  Minite(s)</Text>
+                <Text>{foods.discription} </Text>
+            </View> 
+            <View style={{ height: 120,}}>
+                    <FoodCard item={checkExistence(foods, cart)} onTap={() => {}} onUpdateCart={props.onUpdateCart} />
+             </View>
+
+        </View>
+</View>)}
+
+
+const styles = StyleSheet.create({
+    container: { flex: 1, backgroundColor: '#F2F2F2'},
+    navigation: { flex: 1, marginTop: 43, paddingLeft: 10, flexDirection: 'row', alignItems: 'center' },
+    body: { flex: 10, justifyContent: 'flex-start', alignItems: 'center', backgroundColor: '#FFF', paddingBottom: 160 },
+    footer: { flex: 1, backgroundColor: 'cyan' }
 })
 
-const mapToStateProps = (state: ApplicationState) => {
-    useReducer: state.userReducer;
-}
+
+const mapToStateProps = (state: ApplicationState) => ({
+    userReducer: state.userReducer,
+})
 
 const FoodDetailScreen = connect(mapToStateProps, { onUpdateCart })(FoodDetailScreens) 
-export{FoodDetailScreen}
+
+ 
+ export { FoodDetailScreen }
